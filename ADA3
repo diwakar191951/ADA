@@ -1,0 +1,32 @@
+import time
+import random
+import sys
+sys.setrecursionlimit(3010)
+
+def insertionSortRecur(arr,n):
+    if n<=1:
+        return
+    
+    insertionSortRecur(arr,n-1)
+    val = arr[n-1]
+    j = n-2
+    while j>=0 and val<arr[j]: #compare value with its predecissors till we get the right position.
+        arr[j+1] = arr[j]      # performing swap here.
+        j-=1
+    arr[j+1] = val          # placing the value at right position.
+
+    return arr
+
+
+N = int(input("Enter the number of values you want to sort --> "))
+numbers = []
+for i in range(N):
+    numbers.append(random.randint(0,N))
+
+print(numbers)
+start = time.time()
+numbers = insertionSortRecur(numbers,N)
+end = time.time()
+print(numbers)
+
+print(f"Runtime of the program is {end - start}")
